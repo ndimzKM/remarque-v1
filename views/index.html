@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+    <script src="./codemirror/lib/codemirror.js"></script>
+    <script src="./codemirror/mode/markdown/markdown.js"></script>
+    <script src="./codemirror/mode/xml/xml.js"></script>
+    <script src="./showdown/dist/showdown.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>EditNote</title>
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="top-nav">
+                <a href="#">
+                    <img src="./feather/align-left.svg" alt="">
+                </a>
+                <a href="#">
+                    <img src="./feather/tag.svg" alt="">
+                </a>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="/">
+                        <div class="list-item">
+                            <span class="list-icon">
+                                <img src="./feather/book.svg" alt="">
+                            </span>
+                            <span class="list-i">All Notes</span>
+                        </div>
+                        <span class="number" id="notesCount">0</span>
+                    </a>
+                </li>
+                <li id="getStarred">
+                    <a href="#">
+                        <div class="list-item">
+                            <span class="list-icon">
+                                <img src="./feather/star.svg" alt="">
+                            </span>
+                            <span class="list-i">Starred</span>
+                        </div>
+                        <span class="number" id="starredCount">0</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/reset">
+                        <div class="list-item">
+                            <span class="list-icon">
+                                <img src="./feather/trash-2.svg" alt="">
+                            </span>
+                            <span class="list-i">Trash All</span>
+                        </div>
+                        <span class="number" id="trashCount"></span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tags" id="categories">
+                <!-- <li>
+                    <a href="#">
+                        <span class="icon">
+                            <img src="./feather/folder.svg" alt="">
+                        </span>
+                        <span class="tag-name">Personal</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <img src="./feather/folder.svg" alt="">
+                        </span>
+                        <span class="tag-name">Blog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <img src="./feather/folder.svg" alt="">
+                        </span>
+                        <span class="tag-name">Work</span>
+                    </a>
+                </li> -->
+            </div>
+        </nav>
+        <section class="body" id="main-body">
+            <section class="notes">
+                <div class="notes-top">
+                    <form action="">
+                        <input type="text" placeholder="Search">
+                    </form>
+                    <button id="addNewNote">
+                        <img src="./feather/edit.svg" alt="">
+                    </button>
+                </div>
+                <div class="all-notes" id="notes">
+                    
+                </div>
+            </section>
+            <section class="editor">
+                <div class="editor-nav">
+                    <div>
+                        <button class="preview" id="toggleMarkdown">
+                            <label for="submitBtn"><img src="./feather/columns.svg" alt=""></label>
+                        </button>
+                        <button class="like" id="toggleLike">
+                            <label for="submitBtn"><img src="./feather/star-1.svg" alt=""></label>
+                        </button>
+                    </div>
+                    <ul class="edit">
+                        <li>
+                            <button id="exportButton">
+                                <img src="./feather/download.svg" alt="">
+                            </button>
+                        </li>
+                        <li>
+                            <button id="deleteNote">
+                                <img src="./feather/trash.svg" alt="">
+                            </button>
+                        </li>
+                        <li>
+                            <button id="saveEditedNote">
+                                <img src="./feather/save.svg" alt="">
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <form class="editor-note">
+                    <div class="form show-content" id="editor-note">
+                        <textarea name="textarea" id="textarea"></textarea>
+                    </div>
+                    <div class="markdown-content hide-content" id="markdown-content"></div>
+                </form>
+            </section>
+        </section>
+        <section class="modal hide-modal" id="modal">
+            <h3>Add New Note</h3>
+            <p id="note-error" style="background-color: red;display: none;margin-bottom: 5px;color: #fff;padding: 5px;"></p>
+            <form id="newNote">
+                <input type="text" id="note-title" placeholder="Title">
+                <input type="text" id="note-subtitle" placeholder="Subtitle(optional)">
+                <input type="text" id="note-category" placeholder="Category">
+                <div class="tags">
+                    <input type="text" id="note-tags" placeholder="Tags separated by commas(optional). (E.g react,js,node)">
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+    </main>
+    <script src="./app.js"></script>
+</body>
+</html>
