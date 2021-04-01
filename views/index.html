@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head id="docHead">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="codemirror/lib/codemirror.css">
@@ -91,7 +91,7 @@
                         <input type="text" placeholder="Search">
                     </form>
                     <button id="addNewNote">
-                        <img src="./feather/edit.svg" alt="">
+                        <img class="toggle-icon" src="./icons/light/edit.svg" alt="">
                     </button>
                 </div>
                 <div class="all-notes" id="notes">
@@ -102,26 +102,29 @@
                 <div class="editor-nav">
                     <div>
                         <button class="preview" id="toggleMarkdown">
-                            <label for="submitBtn"><img src="./feather/columns.svg" alt=""></label>
+                            <img class="toggle-icon" src="./icons/light/columns.svg" alt="">
                         </button>
                         <button class="like" id="toggleLike">
-                            <label for="submitBtn"><img src="./feather/star-1.svg" alt=""></label>
+                           <img class="toggle-icon" src="./icons/light/star-1.svg" alt="">
+                        </button>
+                        <button class="like" id="toggleTheme">
+                        	<img class="toggle-icon" src="./icons/light/moon.svg">
                         </button>
                     </div>
                     <ul class="edit">
                         <li>
                             <button id="exportButton">
-                                <img src="./feather/download.svg" alt="">
+                                <img class="toggle-icon" src="./icons/light/download.svg" alt="">
                             </button>
                         </li>
                         <li>
                             <button id="deleteNote">
-                                <img src="./feather/trash.svg" alt="">
+                                <img class="toggle-icon" src="./icons/light/trash.svg" alt="">
                             </button>
                         </li>
                         <li>
                             <button id="saveEditedNote">
-                                <img src="./feather/save.svg" alt="">
+                                <img class="toggle-icon" src="./icons/light/save.svg" alt="">
                             </button>
                         </li>
                     </ul>

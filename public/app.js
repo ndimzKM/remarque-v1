@@ -9,6 +9,11 @@ let editor = CodeMirror.fromTextArea(textarea, {
 
 const mainBody = document.getElementById('main-body')
 
+const darkCSS = document.createElement('link')
+darkCSS.rel = 'stylesheet'
+darkCSS.href = 'css/main-page-dark-css.css'
+darkCSS.id = 'darkTheme'
+const documentHead = document.getElementById('docHead')
 const categories = document.getElementById('categories')
 const notesDiv = document.getElementById('notes')
 const saveBtn = document.getElementById("saveEditedNote")
@@ -26,6 +31,7 @@ const notesCount = document.getElementById('notesCount')
 const trashCount = document.getElementById('trashCount')
 const starredCount = document.getElementById('starredCount')
 
+const themeToggle = document.getElementById('toggleTheme')
 const getStarred = document.getElementById('getStarred')
 const toggleLike = document.getElementById('toggleLike')
 editor.setValue(`# Welcome to EditNote!\nThis is my personal note taking app that I developed to take notes for my exams.`)
@@ -70,7 +76,10 @@ converMkDownBtn.addEventListener('click', e => {
         let mkNote = allNotes.find(note => note.id == currentNoteDisplayed.id)
         // console.log(mkNote.content)
 
-        let converter = new showdown.Converter()
+        let converter = new showdown.Converter({tables:true})
+        converter.setOption('strikethrough',true)
+        converter.setOption('tasklists',true)
+        console.log(converter.getOptions())
         let html = converter.makeHtml(mkNote.content)
 
         markdownPreviewer.innerHTML = html;
@@ -90,7 +99,7 @@ saveBtn.addEventListener('click', e => {
             editedNote.content = editor.getValue()
             allNotes = allNotes.filter(note => note.id !== noteId)
             allNotes.unshift(editedNote)
-            editNoteFromDB(noteId, editedNote.title, editedNote.subtitle, editedNote.content,editedNote.tags)
+            editNoteFromDB(noteId, editedNote.title, editedNote.subtitle, editedNote.content,editedNote.tags,editedNote.category)
             let message = document.createElement('div')
             message.className = 'message'
             message.textContent = "Changes Saved!!"
@@ -180,12 +189,13 @@ function removeActive(){
     }
 }
 
-function editNoteFromDB(id, title,subtitle,content,tags){
+function editNoteFromDB(id, title,subtitle,content,tags,category){
     let note = {
         title,
         subtitle,
         content,
-        tags
+        tags,
+        category
     }
     console.log(JSON.stringify(note))
     fetch(`http://localhost:3333/notes/${id}`, {
@@ -279,4 +289,28 @@ getStarred.addEventListener('click', e => {
         notesDiv.innerHTML += `<div class="note" id=${note.id}><div class="time"><p>${note.starred ? '⭐⭐' : '**'}</p></div><div class="note-info"><p class="title" onClick="displayContent(event,'${note.id}')">${note.title}</p><p class="subtitle">${note.subtitle}</p><div class="content" style="display:none;">${note.content}</div><div class="note-tags">${note.tags.map(tag => `<span>#${tag}</span>`)}</div></div></div>`
     })
     
+})
+
+const toggleAbleIcons = document.querySelectorAll('.toggle-icon')
+
+themeToggle.addEventListener('click', e => {
+    if(documentHead.className == 'dark'){
+        documentHead.removeChild(document.getElementById('darkTheme'))
+        documentHead.className = 'light'
+        toggleAbleIcons.forEach(icon => {
+            icon.src = `./icons/light/${icon.src.split('/dark/')[1]}`
+        })
+        themeToggle.children[0].src = `./icons/light/moon.svg`
+    }else{
+        documentHead.appendChild(darkCSS)
+        documentHead.className = 'dark'
+        toggleAbleIcons.forEach(icon => {
+            icon.parentElement.style.background = 'none'
+            icon.parentElement.style.border = 'none'
+            icon.parentElement.style.outline = 'none'
+            icon.src = `./icons/dark/${icon.src.split('/light/')[1]}`
+            // console.log(icon.src)
+        })
+        themeToggle.children[0].src = `./icons/dark/sun.svg`
+    }
 })

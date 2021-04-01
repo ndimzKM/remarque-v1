@@ -70,6 +70,9 @@ nav{
             margin-bottom: 10px;
             padding: 5px;
             @include flexJustify(none, center);
+            img{
+                margin-right: 5px;
+            }
             span{
                 text-decoration: none;
                 color: #919191;
@@ -101,7 +104,6 @@ nav{
         &::-webkit-scrollbar-thumb{
             background: $navBg;
         }
-        background-color: $notes;
         width: 30%;
         padding: 25px 20px;
         a{
@@ -282,4 +284,8 @@ nav{
     justify-content: center;
     align-items: center;
     border-radius: 3px;
+}
+
+.toggle-icon{
+    opacity: 0.7;
 }
