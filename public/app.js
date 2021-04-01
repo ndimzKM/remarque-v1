@@ -305,9 +305,6 @@ themeToggle.addEventListener('click', e => {
         documentHead.appendChild(darkCSS)
         documentHead.className = 'dark'
         toggleAbleIcons.forEach(icon => {
-            icon.parentElement.style.background = 'none'
-            icon.parentElement.style.border = 'none'
-            icon.parentElement.style.outline = 'none'
             icon.src = `./icons/dark/${icon.src.split('/light/')[1]}`
             // console.log(icon.src)
         })
