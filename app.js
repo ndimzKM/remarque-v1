@@ -14,8 +14,6 @@ darkCSS.rel = 'stylesheet'
 darkCSS.href = 'css/main-page-dark-css.css'
 darkCSS.id = 'darkTheme'
 
-const editorContainer = document.getElementById('editorContainer');
-const notesContainer = document.getElementById('notesContainer');
 const nav = document.getElementById('nav')
 const documentHead = document.getElementById('docHead')
 const categories = document.getElementById('categories')
@@ -35,7 +33,6 @@ const notesCount = document.getElementById('notesCount')
 const trashCount = document.getElementById('trashCount')
 const starredCount = document.getElementById('starredCount')
 
-const hiddenToggleMenu = document.getElementById('hiddenToggleMenu')
 const toggleMenu = document.getElementById('toggleMenu')
 const themeToggle = document.getElementById('toggleTheme')
 const getStarred = document.getElementById('getStarred')
@@ -79,29 +76,9 @@ toggleMenu.addEventListener('click', e => {
     if(toggleMenu.className == 'show-menu'){
         toggleMenu.className = 'hide-menu'
         nav.style.display = 'none'
-        hiddenToggleMenu.style.display = 'block'
-        mainBody.style.width = '100%'
-        mainBody.style.marginLeft = '0%'
-        // notesContainer.style.width '
     }else{
         toggleMenu.className = 'show-menu'
         nav.style.display = 'block'
-        hiddenToggleMenu.style.display = 'none'
-        mainBody.style.width = '82%'
-        mainBody.style.marginLeft = '18%'
-    }
-})
-
-hiddenToggleMenu.addEventListener('click', e => {
-    if(toggleMenu.className == 'show-menu'){
-        toggleMenu.className = 'hide-menu'
-        nav.style.display = 'none'
-        // hiddenToggleMenu.style.display = 'block'
-    }else{
-        toggleMenu.className = 'show-menu'
-        nav.style.display = 'block'
-        mainBody.style.marginLeft = '18%'
-        hiddenToggleMenu.style.display = 'none'
     }
 })
 

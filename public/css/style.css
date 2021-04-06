@@ -144,6 +144,10 @@ nav .tags li:hover {
   align-items: none;
 }
 
+.body .hidden-toggle-menu {
+  display: none;
+}
+
 .body .notes {
   padding-bottom: 20px;
   overflow-y: scroll;

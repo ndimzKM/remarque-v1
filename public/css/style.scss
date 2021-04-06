@@ -91,6 +91,9 @@ nav{
 .body{
     width: 82%;
     margin-left: 18%;
+    .hidden-toggle-menu{
+        display: none;
+    }
     @include flexJustify(space-between, none);
     .notes{
         padding-bottom: 20px;
