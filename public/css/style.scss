@@ -25,6 +25,11 @@ nav{
     position: fixed;
     height: 100vh;
     padding: 20px;
+    button#toggleMenu{
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
     img{
         opacity: 0.8;
     }
@@ -40,6 +45,7 @@ nav{
     }
 
     .navbar{
+       
         margin-top: 20px;
         li{
             list-style: none;

@@ -56,6 +56,12 @@ nav {
   padding: 20px;
 }
 
+nav button#toggleMenu {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
 nav img {
   opacity: 0.8;
 }
