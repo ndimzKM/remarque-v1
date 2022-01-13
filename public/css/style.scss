@@ -1,0 +1,301 @@
+@import './variables';
+@import './functions';
+@import './mardown';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+main{
+    @include flexJustify(space-between, none);
+    height: 100%;
+}
+
+nav{
+    width: 18%;
+    background-color: $navBg;
+    position: fixed;
+    height: 100vh;
+    padding: 20px;
+    button#toggleMenu{
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+    img{
+        opacity: 0.8;
+    }
+
+    .top-nav{
+        @include flexJustify(space-between,center);
+        padding: 5px;
+    }
+
+    li.active{
+        background: #404040;
+        border-radius: 3px;
+    }
+
+    .navbar{
+       
+        margin-top: 20px;
+        li{
+            list-style: none;
+            margin-bottom: 10px;
+            padding: 5px;
+            a{
+                text-decoration: none;
+                color: #dbdada;
+                @include flexJustify(space-between, center);
+                .list-item{
+                    @include flexJustify(none,center);
+                    .list-i{
+                        margin-left: 8px;
+                    }
+                }
+            }
+            &:hover{
+                background: #404040;
+                border-radius: 3px;
+            }
+        }
+    }
+
+    .tags{
+        margin-top: 50px;
+        li{
+            list-style: none;
+            margin-bottom: 10px;
+            padding: 5px;
+            @include flexJustify(none, center);
+            img{
+                margin-right: 5px;
+            }
+            span{
+                text-decoration: none;
+                color: #919191;
+                .tag-name{
+                    margin-left: 8px;
+                }
+            }
+            &:hover{
+                background: #404040;
+                border-radius: 3px;
+            }
+        }
+    }
+}
+
+.body{
+    width: 82%;
+    margin-left: 18%;
+    .hidden-toggle-menu{
+        display: none;
+    }
+    @include flexJustify(space-between, none);
+    .notes{
+        padding-bottom: 20px;
+        overflow-y: scroll;
+        &::-webkit-scrollbar{
+            width: 0.25rem;
+        }
+        &::-webkit-scrollbar-track{
+            background-color: #dcdcdc;
+        }
+        &::-webkit-scrollbar-thumb{
+            background: $navBg;
+        }
+        width: 30%;
+        padding: 25px 20px;
+        a{
+            @include flexJustify(center,center);
+            img{
+                opacity: 0.4;
+            }
+        }
+        .notes-top{
+            @include flexJustify(space-between, center);
+            form{
+                @include flexJustify(center,center);
+                input{
+                    border: 1px #dcdcdc solid;
+                    padding: 5px;
+                    background-color: transparent;
+                    border-radius: 3px;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+        }
+        .all-notes{
+            margin-top: 20px;
+            .note{
+                color: #808080;
+                margin-bottom: 5px;
+                padding: 10px 0px;
+                @include flexJustify(none, none);
+                .note-info{
+                    padding-left: 20px;
+                    .title{
+                        font-weight: bold;
+                        padding-bottom: 5px;
+                        cursor: pointer;
+                    }
+
+                    .note-tags{
+                        padding-top: 5px;
+                        font-style: italic;
+                        text-decoration: line-through;
+                        span{
+                            margin-right: 5px;
+                        }
+                    }
+                }
+                border-bottom: 1px #dcdcdc solid;
+                padding-bottom: 10px;
+
+                
+            }
+            .note.active{
+                background-color: #dcdcdc;
+                // padding-top: 10px;
+            }
+        }
+    }
+
+    .editor{
+        min-height: 100vh;
+        width: 70%;
+        padding: 25px 20px;
+        .editor-nav{
+            .like{
+                margin-left: 10px;
+            }
+            @include flexJustify(space-between, center);
+            .edit{
+                li{
+                    list-style: none;
+                    display: inline;
+                    padding-left: 20px;
+                    a{
+                        text-decoration: none;
+                    }
+                }
+            }
+            border-bottom: 1px #dcdcdc solid;
+            padding-bottom: 10px;
+        }
+
+    }
+    
+    textarea{
+        height: 100vh;
+        padding: 20px 0;
+        font-size: 1.3em;
+        font-family: Arial, Helvetica, sans-serif;
+        border: none;
+        width: 100%;
+        // background: red;
+        &:focus{
+            outline: none;
+            border: none;
+        }
+    }
+    .CodeMirror{
+        height: 600px;
+        font-size: 1.2em;
+        padding-top: 10px;
+        
+    }
+    .CodeMirror-vscrollbar{
+        &::-webkit-scrollbar{
+            width: 0.25rem;
+        }
+        &::-webkit-scrollbar-track{
+            background-color: #dcdcdc;
+        }
+        &::-webkit-scrollbar-thumb{
+            background: $navBg;
+        }
+    }
+
+    .hide-content{
+        display: none;
+    }
+
+    .show-content{
+        display: block;
+    }
+}
+
+.modal{
+    position: absolute;
+    top: 200px;
+    left: 35%;
+    padding:10px 0;
+    background: #2c3437;
+    height: 275px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 3px;
+    z-index: 100;
+}
+
+.modal h3{
+    color: #fff;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.modal input{
+    padding: 10px;
+    border: 1px #fff solid;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    &:focus{
+        outline: none;
+    }
+}
+
+.modal input[type="submit"]{
+    margin-top: 10px;
+}
+
+.show-modal{
+    display: flex;
+}
+
+.hide-modal{
+    display: none;
+}
+
+.message{
+    position: absolute;
+    z-index: 10;
+    background: rgb(136, 136, 247);
+    color: white;
+    padding: 10px;
+    top: 100px;
+    left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.toggle-icon{
+    opacity: 0.7;
+}

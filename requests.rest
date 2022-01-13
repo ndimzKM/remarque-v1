@@ -1,0 +1,7 @@
+POST
+http://localhost:3333/notes
+Content-Type: application/json
+
+{
+    ""
+}
